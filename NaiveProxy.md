@@ -114,3 +114,11 @@ select Full in TLS tab
 #### OCI
 
 allow ingress of 443 in Security List
+
+
+
+#### Client
+
+Qv2ray + NaiveProxy Plugin
+
+you must add naiveproxy plugin manually

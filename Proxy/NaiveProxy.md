@@ -6,6 +6,22 @@ based on OCI && Cloudflare && CentOS 8
 
 
 
+#### Cloudflare
+
+generate Api Token 
+
+edit DNS only in DNS tab
+
+select Full in TLS tab
+
+
+
+#### OCI
+
+allow ingress of 443 in Security List
+
+
+
 #### Command Line
 
 dnf install python3-librepo -y
@@ -14,7 +30,18 @@ dnf install epel-release
 
 dnf upgrade
 
-yum install snapd
+```bash
+# migrate from CentOS 8 to CentOS Stream 8
+dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
+dnf distro-sync
+```
+
+yum install snapd / dnf --enablerepo=epel -y install snapd ( CentOS 9 )
+
+```bash
+# if necessary
+kill -TERM 1
+```
 
 systemctl enable --now snapd.socket
 
@@ -65,11 +92,6 @@ cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c32; echo;
 vim /etc/caddy/Caddyfile
 
 ```bash
-# for test
-:80 {
-        respond "Hello, world!"
-}
-# for proxy
 :443, example.com {
         tls mail-address {
                 dns cloudflare your-cloudflare-api-token
@@ -101,24 +123,10 @@ firewall-cmd --reload
 
 
 
-#### Cloudflare
-
-generate Api Token 
-
-edit DNS only in DNS tab
-
-select Full in TLS tab
-
-
-
-#### OCI
-
-allow ingress of 443 in Security List
-
-
-
 #### Client
 
 Qv2ray + NaiveProxy Plugin
+
+V2ray Core -> .27 version is recommended
 
 you must add naiveproxy plugin manually

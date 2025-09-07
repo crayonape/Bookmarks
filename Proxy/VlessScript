@@ -1,0 +1,1 @@
+bash <(curl -L https://raw.githubusercontent.com/yahuisme/xray-vless-reality/main/install.sh)
